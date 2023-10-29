@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cart</title>
+    <link rel="stylesheet" href="cart.css">
+</head>
+<body>
+    <header>
+        <h1>My Cart</h1>
+    </header>
+    <div class="cart-container">
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Book Title</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody class="cart-items">
+                <!-- Cart items will be dynamically added here -->
+            </tbody>
+        </table>
+        <div class="total">
+            <p>Total: <span id="cart-total">$0.00</span></p>
+        </div>
+        <a href="index.html" class="btn">Continue Shopping</a>
+    </div>
+
+    <script>
+        // Retrieve cart data from localStorage
+        const cartData = JSON.parse(localStorage.getItem('cartData'));
+    
+        // Reference to the cart items container and the total price element
+        const cartItemsContainer = document.querySelector('.cart-items');
+        const cartTotal = document.getElementById('cart-total');
+    
+        // Function to fetch book details (including price) from the API
+        function fetchBookDetails(bookTitle) {
+            return fetch('api.php')
+                .then(response => {
+                    if (response.status === 200) {
+                        return response.json();
+                    } else {
+                        throw new Error('Error fetching book data: ' + response.statusText);
+                    }
+                })
+                .then(data => {
+                    return data.find(book => book.title === bookTitle);
+                });
+        }
+    
+        // Function to remove an item from the cart
+        function removeFromCart(bookTitle) {
+            const itemIndex = cartData.indexOf(bookTitle);
+            if (itemIndex !== -1) {
+                cartData.splice(itemIndex, 1);
+                localStorage.setItem('cartData', JSON.stringify(cartData));
+            }
+        }
+    
+        // Function to update the total price
+        function updateTotalPrice() {
+            const totalPrice = calculateTotalPrice();
+            cartTotal.textContent = `$${totalPrice.toFixed(2)}`;
+        }
+    
+        // Function to calculate the total price of items in the cart
+        function calculateTotalPrice() {
+            let total = 0;
+            for (const bookTitle of cartData) {
+                const book = books.find(book => book.title === bookTitle);
+                if (book) {
+                    total += parseFloat(book.price);
+                }
+            }
+            return total;
+        }
+    
+        // Display the books in the cart
+        if (cartData && cartData.length > 0) {
+            Promise.all(cartData.map(bookTitle => fetchBookDetails(bookTitle)))
+                .then(books => {
+                    cartItemsContainer.innerHTML = ''; // Clear existing cart items
+                    let totalPrice = 0;
+                    books.forEach((book, index) => {
+                        const cartItem = createCartItemElement(book, index + 1);
+                        cartItemsContainer.appendChild(cartItem);
+                        totalPrice += parseFloat(book.price); // Update the total price
+                    });
+                    cartTotal.textContent = `$${totalPrice.toFixed(2)}`;
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        } else {
+            cartItemsContainer.innerHTML = '<tr><td colspan="4">Your cart is empty.</td></tr>';
+            cartTotal.textContent = '$0.00';
+        }
+    
+        // Function to create a cart item element
+        function createCartItemElement(book, itemNumber) {
+            const cartItem = document.createElement('tr');
+            cartItem.innerHTML = `
+                <td>${itemNumber}</td>
+                <td>${book.title}</td>
+                <td>$${parseFloat(book.price).toFixed(2)}</td>
+                <td><button class="delete-button">Delete</button></td>
+            `;
+    
+            const deleteButton = cartItem.querySelector('.delete-button');
+            deleteButton.addEventListener('click', () => {
+                // Remove the item from the cart
+                removeFromCart(book.title);
+                // Remove the cart item element from the DOM
+                cartItem.remove();
+                // Update the total price
+                updateTotalPrice();
+            });
+    
+            return cartItem;
+        }
+    </script>
+</body>
+</html>

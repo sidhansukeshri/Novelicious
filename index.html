@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyBookstore</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        #cart-button {
+            background-color: #3087e3a0;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        #cart-button:hover {
+            background-color: #0056b3;
+        }
+        
+        /* Style for the cart badge */
+        #cart-badge {
+            background-color: #ff6b6b;
+            color: #fff;
+            border-radius: 50%;
+            padding: 4px 8px;
+            font-size: 14px;
+            position: absolute;
+            top: -5px;
+            right: -5px;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Novelicious</h1>
+        <div class="search-bar">
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search books...">
+            </div>
+            <button id="cart-button">My Cart (0)</button>
+        </div>
+    </header>
+    <section class="about-us">
+        <h2>About Us</h2>
+        <p>Welcome to Novelicious, where books find their forever homes! We curate the best reads for you, from bookworms to casual page-flippers. Join our book-loving community, discover tales that'll make your heart smile, and let's share the magic of stories. Happy reading, and welcome to the Novelicious family! </p>
+    </section>
+    <section class="sort-options">    
+        <label for="sort-genre">Sort by Genre:</label>
+        <select id="sort-genre">
+            <option value="all">All Genres</option>
+            <!-- Options will be populated dynamically using JavaScript -->
+        </select>
+    
+        <label for="sort-pages">Sort by Pages:</label>
+        <select id="sort-pages">
+            <option value="all">All Pages</option>
+            <option value="lt100">Less than 100 pages</option>
+            <option value="100-299">100-299 pages</option>
+            <option value="300-499">300-499 pages</option>
+            <option value="gt500">More than 500 pages</option>
+        </select>
+    
+        <label for="sort-price">Sort by Price:</label>
+        <select id="sort-price">
+            <option value="all">All Prices</option>
+            <option value="high-to-low">Price: High to Low</option>
+            <option value="low-to-high">Price: Low to High</option>
+        </select>
+        <button id="apply-sort">Sort</button>
+    </section>
+    
+    
+    <section class="books">
+        <!-- Book listings will be populated dynamically using JavaScript -->
+    </section>
+
+    
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,253 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav li {
+    display: inline;
+    margin: 0 10px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+}
+
+.search-bar {
+    display: inline-block;
+    margin: 0 20px;
+}
+
+.about-us {
+    margin: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sort-options {
+    margin: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease-in-out;
+    text-align: center;
+}
+
+.sort-options:hover {
+    background-color: #f0f0f0; /* Slight color change on hover */
+}
+
+.sort-options select {
+    width: 200px;
+    padding: 5px;
+}
+
+.books {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* To display 2 books per row */
+    margin: 10px;
+}
+
+.book {
+    width: calc(49%); /* Each book takes up 50% of the container width with spacing in between */
+    margin: 6px;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #e1e1e1;
+    border-radius: 15px; /* Curvy edges */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.3s ease-in-out; /* Smooth transitions */
+    text-align: center;
+}
+
+.book img {
+    display: block;
+    margin: 0 auto; /* Horizontally center the image */
+    max-height: 350px;
+    object-fit: cover;
+    border-radius: 15px; /* Apply border-radius to round the corners */
+}
+
+
+.book h2 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+}
+
+.book p {
+    margin: 5px 0;
+}
+
+.book .add-to-cart {
+    margin-top: 10px;
+    width: 80%;
+    border-radius: 5px;
+    height: 35px;
+}
+
+.book:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+}
+
+.add-to-cart {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s; /* Add transition to background and transform */
+}
+
+.add-to-cart:hover {
+    background-color: #0056b3;
+    transform: scale(1.05); /* Slight scaling on hover */
+}
+
+/* Funky and Cool Additions */
+body {
+    background: linear-gradient(135deg, #ff6b6b, #6b6bff); /* Vibrant gradient background */
+}
+
+h1, h2 {
+    font-family: 'Comic Sans MS', cursive; /* Fun font choice */
+}
+
+/* Custom cursor */
+.book:hover {
+    cursor: url('custom-cursor.png'), auto;
+}
+
+/* Fun text animation */
+h1 {
+    animation: neonText 2s linear infinite alternate;
+}
+
+@keyframes neonText {
+    0% {
+        text-shadow: 0 0 5px #ff6b6b, 0 0 10px #ff6b6b, 0 0 15px #ff6b6b;
+    }
+    100% {
+        text-shadow: 0 0 5px #6b6bff, 0 0 10px #6b6bff, 0 0 15px #6b6bff;
+    }
+}
+
+/* Custom background animation */
+header {
+    animation: colorShift 5s infinite alternate linear;
+}
+
+
+
+/* Hover effect for links */
+nav a:hover {
+    color: #6b6bff; /* Change link color on hover */
+}
+
+/* Custom scroll bar */
+body::-webkit-scrollbar {
+    width: 12px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #6b6bff;
+    border-radius: 10px;
+}
+
+/* Vibrant gradient for buttons */
+.add-to-cart {
+    background: linear-gradient(135deg, #ff6b6b, #6b6bff);
+}
+
+.add-to-cart:hover {
+    background: linear-gradient(135deg, #6b6bff, #ff6b6b);
+}
+
+/* Style for the search bar */
+.search-bar {
+    display: inline-block;
+    margin: 0 20px;
+    position: relative;
+}
+
+.search-bar input[type="text"] {
+    width: 200px;
+    padding: 8px;
+    border: none;
+    border-bottom: 2px solid #007bff; /* Underline effect */
+    border-radius: 0;
+    background-color: transparent;
+    color: #f5eeee;
+    transition: border-bottom 0.3s ease-in-out;
+}
+
+.search-bar input[type="text"]::placeholder {
+    color: #999; /* Placeholder text color */
+}
+
+.search-bar input[type="text"]:focus {
+    outline: none;
+    border-bottom: 2px solid #0056b3; /* Highlight when focused */
+}
+
+/* Style for the dropdowns */
+.sort-options select {
+    width: 200px;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+    color: #333;
+    font-size: 16px;
+    transition: background-color 0.2s, border 0.2s;
+}
+
+.sort-options select:focus {
+    outline: none;
+    background-color: #fff; /* Highlight when focused */
+    border: 1px solid #007bff;
+}
+
+/* Style for the "Sort" button */
+#apply-sort {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#apply-sort:hover {
+    background-color: #0056b3;
+}
+
+
